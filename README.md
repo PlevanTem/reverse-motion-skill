@@ -37,22 +37,36 @@
 
 ## 安装与使用
 
-将本仓库目录复制到 Codex 的技能目录，目录名保持 `reverse-motion-skill`：
+### 通过 npx 安装
 
-```text
-~/.codex/skills/reverse-motion-skill/
-├── SKILL.md
-└── references/
+需要 Node.js 22.20 或更高版本及网络连接。在目标项目目录执行，并按提示选择支持的 Agent：
+
+```bash
+npx skills add PlevanTem/reverse-motion-skill
 ```
 
-重新打开或启动新会话后，使用：
+默认安装到当前项目；添加 `-g` 可安装到用户范围。更多选项参见 [skills CLI](https://github.com/vercel-labs/skills)。
+
+### 安装到 Claude Code
+
+在目标项目目录执行：
+
+```bash
+npx skills add PlevanTem/reverse-motion-skill --skill reverse-motion-skill --agent claude-code --copy --yes
+```
+
+这会安装到当前项目的 `.claude/skills/reverse-motion-skill/`。添加 `--global` 可安装到用户范围；如果不使用 `--copy` 和 `--yes`，可按安装器提示选择安装方式。安装后在 Claude Code 会话中调用：
 
 ```text
-$reverse-motion-skill 分析这个参考的交互和动效：<网页 URL 或视频文件路径>。
+/reverse-motion-skill 分析这个参考的交互和动效：<网页 URL 或视频文件路径>。
 重点覆盖首页主要路径，输出可用于实现与验收的规格，并列出未确认项。
 ```
 
-实际调用方式与技能发现取决于宿主环境；浏览器操作、视频抽帧等需要环境提供相应能力。只需规格时不要求修改目标页面。
+也可不使用 npx：将本仓库完整内容复制到项目的 `.claude/skills/reverse-motion-skill/`，或用户目录下的 `~/.claude/skills/reverse-motion-skill/`；保留 `SKILL.md` 和 `references/` 的相对位置。
+
+### 安装到 Codex
+
+通过安装器选择 Codex，或将本仓库完整内容复制到 `~/.codex/skills/reverse-motion-skill/`，然后在 Codex 中调用 `$reverse-motion-skill`。实际调用方式与技能发现取决于宿主环境；浏览器操作、视频抽帧等需要环境提供相应能力。只需规格时不要求修改目标页面。
 
 ## 适用范围与限制
 

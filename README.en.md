@@ -37,22 +37,36 @@ The document also includes coverage, unknowns, and acceptance checks. Where usef
 
 ## Install and use
 
-Copy this repository directory into the Codex skills directory, keeping the directory name `reverse-motion-skill`:
+### Install with npx
 
-```text
-~/.codex/skills/reverse-motion-skill/
-├── SKILL.md
-└── references/
+Requires Node.js 22.20 or later and network access. Run this from the target project and choose a supported agent when prompted:
+
+```bash
+npx skills add PlevanTem/reverse-motion-skill
 ```
 
-Open a new session and prompt:
+Installation is project-scoped by default; add `-g` for user-wide installation. See the [skills CLI](https://github.com/vercel-labs/skills) for more options.
+
+### Install for Claude Code
+
+Run from the target project:
+
+```bash
+npx skills add PlevanTem/reverse-motion-skill --skill reverse-motion-skill --agent claude-code --copy --yes
+```
+
+This installs to `.claude/skills/reverse-motion-skill/` in the current project. Add `--global` for user-wide installation; omit `--copy` and `--yes` to choose the installation method interactively. Then invoke the skill in a Claude Code session:
 
 ```text
-$reverse-motion-skill Analyze the interactions and motion in this reference: <URL or video file path>.
+/reverse-motion-skill Analyze the interactions and motion in this reference: <URL or video file path>.
 Prioritize the main user journey and produce an implementable, testable specification with any unknowns.
 ```
 
-Skill discovery and invocation depend on the host. Browser interaction and video frame extraction require tools available in the execution environment. Producing a specification alone does not require changing the target page.
+To install without npx, copy the complete repository contents into the project's `.claude/skills/reverse-motion-skill/` or the user-wide `~/.claude/skills/reverse-motion-skill/`. Preserve the relative locations of `SKILL.md` and `references/`.
+
+### Install for Codex
+
+Select Codex in the installer, or copy the complete repository contents into `~/.codex/skills/reverse-motion-skill/`, then invoke `$reverse-motion-skill` in Codex. Skill discovery and invocation depend on the host. Browser interaction and video frame extraction require tools available in the execution environment. Producing a specification alone does not require changing the target page.
 
 ## Scope and limits
 
